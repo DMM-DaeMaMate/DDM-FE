@@ -46,6 +46,7 @@ function Input({
                         placeholder={placeholder}
                         width={width}
                         max={max}
+                        min={0}
                         maxLength={max}
                         value={value}
                         name={id}
@@ -105,6 +106,15 @@ const CustomInput = styled.input`
 
     &::placeholder {
         color: ${Colors.Gray400};
+    }
+
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 `
 
