@@ -31,8 +31,8 @@ function Header() {
                         <TextButton>마이페이지</TextButton>
                     </LeftContainer>
 
-                    <RightContainer>
-                        <Icon onClick={() => setMenu(!menu)} ref={dropMenuRef}>
+                    <RightContainer ref={dropMenuRef}>
+                        <Icon onClick={() => setMenu(!menu)}>
                             <IoMdPerson />
                         </Icon>
 
