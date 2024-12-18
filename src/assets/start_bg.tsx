@@ -209,11 +209,9 @@ export default StartBg
 
 const FadeIn = keyframes`
     0%{
-        transform:translateY(-10px) scale(1.01);
         opacity:0;
     }
     100%{
-        transform:translateY(0) scale(1);
         opacity:1;
     }
 `

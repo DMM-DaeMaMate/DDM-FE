@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { Colors } from "../style/colors"
 import StartBg from "../assets/start_bg"
 import Logo from "../assets/Logo"
@@ -46,7 +46,19 @@ const Background = styled.div`
     background: linear-gradient(to right, ${Colors.White}, ${Colors.Orange100});
 `
 
+const FadeIn = keyframes`
+    0%{
+        transform:translateY(-10px);
+        opacity:0;
+    }
+    100%{
+        transform:translateY(0);
+        opacity:1;
+    }
+`
+
 const Container = styled.div`
+    animation: ${FadeIn} 1.5s;
     position: fixed;
     left: 15%;
     padding-top: 10%;
