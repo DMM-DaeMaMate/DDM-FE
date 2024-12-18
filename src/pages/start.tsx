@@ -2,8 +2,19 @@ import styled from "styled-components"
 import { Colors } from "../style/colors"
 import StartBg from "../assets/start_bg"
 import Logo from "../assets/Logo"
+import { useNavigate } from "react-router-dom"
 
 function Start() {
+    const navigate = useNavigate()
+
+    const toLogin = () => {
+        navigate("/login")
+    }
+
+    const toSignup = () => {
+        navigate("/signup")
+    }
+
     return (
         <>
             <Background>
@@ -18,8 +29,8 @@ function Start() {
                     </LogoContainer>
 
                     <ButtonContainer>
-                        <Login>로그인</Login>
-                        <Signup>회원가입</Signup>
+                        <Login onClick={toLogin}>로그인</Login>
+                        <Signup onClick={toSignup}>회원가입</Signup>
                     </ButtonContainer>
                 </Container>
             </Background>

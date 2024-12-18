@@ -2,8 +2,15 @@ import styled from "styled-components"
 import { Colors } from "../../style/colors"
 import Input from "../../components/common/input"
 import Button from "../../components/common/button"
+import { useNavigate } from "react-router-dom"
 
 function Inform() {
+    const navigate = useNavigate()
+
+    const toLogin = () => {
+        navigate("/login")
+    }
+
     return (
         <>
             <Background>
@@ -46,7 +53,8 @@ function Inform() {
 
                             <TextContainer>
                                 <Text>
-                                    이미 회원이신가요? <Accent>로그인</Accent>
+                                    이미 회원이신가요?{" "}
+                                    <Accent onClick={toLogin}>로그인</Accent>
                                 </Text>
                             </TextContainer>
                         </ButtonContainer>
