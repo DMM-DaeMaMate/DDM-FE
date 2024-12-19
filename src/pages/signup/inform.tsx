@@ -11,6 +11,10 @@ function Inform() {
         navigate("/login")
     }
 
+    const toMain = () => {
+        navigate("/main")
+    }
+
     return (
         <>
             <Background>
@@ -49,7 +53,7 @@ function Inform() {
                         </InputContainer>
 
                         <ButtonContainer>
-                            <Button>회원가입</Button>
+                            <Button onClick={toMain}>회원가입</Button>
 
                             <TextContainer>
                                 <Text>

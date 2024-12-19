@@ -4,10 +4,13 @@ import Logo from "../../assets/Logo"
 import { IoMdPerson } from "react-icons/io"
 import { useEffect, useRef, useState } from "react"
 import Dropdown from "./dropdown"
+import { useNavigate } from "react-router-dom"
 
 function Header() {
     const dropMenuRef = useRef<HTMLDivElement | null>(null)
     const [menu, setMenu] = useState<Boolean>(false)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleOutsideClose = (e: { target: any }) => {
@@ -23,7 +26,7 @@ function Header() {
             <Background>
                 <Container>
                     <LeftContainer>
-                        <LogoContainer>
+                        <LogoContainer onClick={() => navigate("/main")}>
                             <Logo />
                         </LogoContainer>
                         <TextButton>일정관리</TextButton>
