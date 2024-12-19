@@ -50,6 +50,7 @@ const Background = styled.div`
     width: 100%;
     height: 40px;
     border-bottom: 1px solid ${Colors.Gray200};
+    background: ${Colors.White};
     display: flex;
     justify-content: center;
     align-items: center;
