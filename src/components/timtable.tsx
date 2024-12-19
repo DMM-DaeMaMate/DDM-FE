@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { getTimeTable } from "../apis/get/getTimeTable"
 import { getWeekNumber } from "../utils/getWeekNumber"
 import { getEndDate } from "../utils/getEndDate"
+import { Colors } from "../style/colors"
 
 export const TimeTable = () => {
     const days = ["월", "화", "수", "목", "금"]
@@ -81,7 +82,7 @@ export const TimeTable = () => {
                         <TableHeader>{period + 1}교시</TableHeader>
                         {timeTable.map((dayData, dayIndex) => (
                             <TableCell key={dayIndex}>
-                                {dayData[period + 1]}
+                                <TableText>{dayData[period + 1]}</TableText>
                             </TableCell>
                         ))}
                     </TableRow>
@@ -97,40 +98,53 @@ const TableWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 65%;
-    margin-top: 10px;
 `
 
 const Table = styled.div`
     display: table;
     border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 700px;
+    background-color: ${Colors.White};
 `
 
 const TableRow = styled.div`
     display: table-row;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid ${Colors.Black};
 `
 
 const TableHeader = styled.div`
-    padding: 14px;
+    padding: 6px 0;
+    width: 20px;
+    height: 20px;
     display: table-cell;
-    background-color: #f7f7f7;
+    background-color: ${Colors.Orange200};
     font-weight: bold;
-    text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid ${Colors.White};
     font-size: 16px;
-    color: #333;
+    color: ${Colors.Orange800};
+    text-align: center;
 `
 
 const TableCell = styled.div`
     display: table-cell;
-    padding: 14px;
+    padding: 4px 0;
+    width: 35px;
+    height: 50px;
     text-align: center;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    color: #333;
+    border: 1px solid ${Colors.Orange300};
+    position: relative;
+`
+
+const TableText = styled.p`
+    width: 85px;
+    height: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: ${Colors.Orange800};
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `
