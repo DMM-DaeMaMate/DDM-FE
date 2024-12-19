@@ -11,6 +11,10 @@ function Login() {
         navigate("/signup")
     }
 
+    const toMain = () => {
+        navigate("/main")
+    }
+
     return (
         <>
             <Background>
@@ -38,7 +42,7 @@ function Login() {
                         </InputContainer>
 
                         <ButtonContainer>
-                            <Button>로그인</Button>
+                            <Button onClick={toMain}>로그인</Button>
 
                             <TextContainer>
                                 <Text>
