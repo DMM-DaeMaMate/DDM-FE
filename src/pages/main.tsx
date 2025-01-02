@@ -5,8 +5,11 @@ import { Colors } from "../style/colors"
 import { LuNotebookPen } from "react-icons/lu"
 import { GrNotes } from "react-icons/gr"
 import { BsPersonCircle } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
 
 function Main() {
+    const navigate = useNavigate()
+
     return (
         <>
             <Header />
@@ -32,7 +35,7 @@ function Main() {
                                 성적기록
                             </ButtonWrapper>
                             <ButtonWrapper>
-                                <Button>
+                                <Button onClick={() => navigate("/mypage")}>
                                     <BsPersonCircle />
                                 </Button>
                                 마이페이지

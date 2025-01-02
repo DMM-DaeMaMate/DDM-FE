@@ -32,7 +32,9 @@ function Header() {
                     </LeftContainer>
 
                     <RightContainer>
-                        <TextButton>마이페이지</TextButton>
+                        <TextButton onClick={() => navigate("/mypage")}>
+                            마이페이지
+                        </TextButton>
                     </RightContainer>
                 </Container>
             </Background>
