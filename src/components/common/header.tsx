@@ -1,9 +1,7 @@
 import styled from "styled-components"
 import { Colors } from "../../style/colors"
 import Logo from "../../assets/Logo"
-import { IoMdPerson } from "react-icons/io"
 import { useEffect, useRef, useState } from "react"
-import Dropdown from "./dropdown"
 import { useNavigate } from "react-router-dom"
 
 function Header() {
@@ -31,15 +29,10 @@ function Header() {
                         </LogoContainer>
                         <TextButton>일정관리</TextButton>
                         <TextButton>성적기록</TextButton>
-                        <TextButton>마이페이지</TextButton>
                     </LeftContainer>
 
-                    <RightContainer ref={dropMenuRef}>
-                        <Icon onClick={() => setMenu(!menu)}>
-                            <IoMdPerson />
-                        </Icon>
-
-                        {menu && <Dropdown name="Hello World!" />}
+                    <RightContainer>
+                        <TextButton>마이페이지</TextButton>
                     </RightContainer>
                 </Container>
             </Background>
@@ -96,18 +89,4 @@ const RightContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: auto;
-`
-
-const Icon = styled.div`
-    width: 30px;
-    height: 30px;
-    font-size: 24px;
-    color: ${Colors.Gray500};
-    border-radius: 15px;
-    background: ${Colors.Gray200};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
 `

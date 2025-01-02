@@ -1,4 +1,4 @@
-import Header from "../components/header/header"
+import Header from "../components/common/header"
 import TimeTable from "../components/timtable"
 import styled from "styled-components"
 import { Colors } from "../style/colors"
