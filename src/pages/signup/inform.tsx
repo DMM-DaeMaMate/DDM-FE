@@ -32,23 +32,18 @@ function Inform() {
                                 id="name"
                             />
                             <Input
-                                label="학교"
-                                placeholder="학교를 입력해주세요"
-                                id="school"
-                                max={24}
-                            />
-                            <Input
                                 label="학년"
                                 placeholder="학년을 입력해주세요"
                                 id="grade"
                                 type="number"
-                                max={6}
+                                max={3}
                             />
                             <Input
                                 label="반"
                                 placeholder="반을 입력해주세요"
                                 id="class"
-                                max={24}
+                                type="number"
+                                max={4}
                             />
                         </InputContainer>
 

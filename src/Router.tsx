@@ -4,6 +4,7 @@ import Login from "./pages/login"
 import Signup from "./pages/signup/signup"
 import Inform from "./pages/signup/inform"
 import Main from "./pages/main"
+import Mypage from "./pages/mypage"
 
 function Router() {
     return (
@@ -14,6 +15,7 @@ function Router() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/inform" element={<Inform />} />
                 <Route path="/main" element={<Main />} />
+                <Route path="/mypage" element={<Mypage />} />
             </Routes>
         </BrowserRouter>
     )
