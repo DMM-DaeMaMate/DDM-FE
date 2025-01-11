@@ -75,7 +75,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: start;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 `
 
 const Label = styled.label`
@@ -98,7 +98,7 @@ const InputWrapper = styled.div`
 
 const CustomInput = styled.input`
     width: ${({ width }) => `${width}px`};
-    height: 35px;
+    height: 40px;
     background: none;
     border: none;
     outline: none;
