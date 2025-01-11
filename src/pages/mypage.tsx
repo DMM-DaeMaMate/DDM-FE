@@ -3,10 +3,23 @@ import { Colors } from "../style/colors"
 import Input from "../components/common/input"
 import Button from "../components/common/button"
 import Background from "../components/background"
+import Modal from "../components/common/modal"
+import { useState } from "react"
 
 function Mypage() {
+    const [modal, setModal] = useState<Boolean>(false)
+
     return (
         <>
+            {modal && (
+                <Modal
+                    title="계정 삭제하기"
+                    content={`계정 삭제 시 프로필 및 기록 내용이 삭제됩니다. \n 삭제하시겠습니까?`}
+                    check={() => setModal(!modal)}
+                    close={() => setModal(!modal)}
+                />
+            )}
+
             <Background
                 title="마이페이지"
                 subtitle="이 곳에서 자신의 정보를 수정하세요"
@@ -47,7 +60,9 @@ function Mypage() {
                     </ButtonContainer>
                     <ButtonContainer>
                         계정 삭제 시 프로필 및 기록 내용이 삭제됩니다.
-                        <RemoveButton>계정삭제</RemoveButton>
+                        <RemoveButton onClick={() => setModal(!modal)}>
+                            계정삭제
+                        </RemoveButton>
                     </ButtonContainer>
                 </WarnContainer>
             </Background>
