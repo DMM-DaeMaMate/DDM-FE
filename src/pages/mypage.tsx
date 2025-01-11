@@ -40,10 +40,16 @@ function Mypage() {
                     </ButtonWrapper>
                 </Form>
 
-                <RemoveContainer>
-                    계정 삭제 시 프로필 및 기록 내용이 삭제됩니다.
-                    <RemoveButton>계정삭제</RemoveButton>
-                </RemoveContainer>
+                <WarnContainer>
+                    <ButtonContainer>
+                        로그아웃하여 처음 페이지로 이동합니다.
+                        <LogoutButton>로그아웃</LogoutButton>
+                    </ButtonContainer>
+                    <ButtonContainer>
+                        계정 삭제 시 프로필 및 기록 내용이 삭제됩니다.
+                        <RemoveButton>계정삭제</RemoveButton>
+                    </ButtonContainer>
+                </WarnContainer>
             </Background>
         </>
     )
@@ -84,7 +90,7 @@ const ButtonWrapper = styled.div`
     margin-left: auto;
 `
 
-const RemoveContainer = styled.div`
+const ButtonContainer = styled.div`
     margin-top: 20px;
     width: 450px;
     padding: 25px;
@@ -99,11 +105,33 @@ const RemoveContainer = styled.div`
     border-radius: 12px;
 `
 
+const WarnContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+
 const RemoveButton = styled.button`
     margin-left: auto;
     padding: 10px 20px;
     cursor: pointer;
     background-color: ${Colors.CriticalMain};
+    border-radius: 8px;
+    border: none;
+    color: ${Colors.White};
+    font-size: 16px;
+    font-weight: 550;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const LogoutButton = styled.button`
+    margin-left: auto;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: ${Colors.Gray500};
     border-radius: 8px;
     border: none;
     color: ${Colors.White};
