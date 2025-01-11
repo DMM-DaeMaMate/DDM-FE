@@ -12,11 +12,13 @@ interface Props {
 function Background({ title, subtitle, children }: Props) {
     return (
         <>
-            <Header />
             <Container>
                 <TopContainer>
-                    <Title>{title}</Title>
-                    <SubTitle>{subtitle}</SubTitle>
+                    <Header />
+                    <TitleContainer>
+                        <Title>{title}</Title>
+                        <SubTitle>{subtitle}</SubTitle>
+                    </TitleContainer>
                 </TopContainer>
 
                 <BottomContainer>
@@ -49,16 +51,24 @@ const TopContainer = styled.div`
     gap: 10px;
 `
 
-const Title = styled.div`
-    margin-top: 40px;
+const TitleContainer = styled.div`
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+`
+
+const Title = styled.div`
     font-size: 24px;
     font-weight: 800;
     color: ${Colors.Black};
 `
 
 const SubTitle = styled.div`
-    margin-left: 25%;
     font-size: 16px;
     font-weight: 500;
     color: ${Colors.Gray500};

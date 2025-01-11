@@ -1,23 +1,10 @@
 import styled from "styled-components"
 import { Colors } from "../../style/colors"
 import Logo from "../../assets/Logo"
-import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 function Header() {
-    const dropMenuRef = useRef<HTMLDivElement | null>(null)
-    const [menu, setMenu] = useState<Boolean>(false)
-
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const handleOutsideClose = (e: { target: any }) => {
-            if (menu && !dropMenuRef.current?.contains(e.target)) setMenu(false)
-        }
-        document.addEventListener("click", handleOutsideClose)
-
-        return () => document.removeEventListener("click", handleOutsideClose)
-    }, [menu])
 
     return (
         <>
@@ -46,13 +33,12 @@ export default Header
 
 const Background = styled.div`
     width: 100%;
-    height: 40px;
-    border-bottom: 1px solid ${Colors.Gray200};
+    height: 60px;
+    border-bottom: 1px solid ${Colors.Gray100};
     background: ${Colors.White};
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
 `
 
 const Container = styled.div`
