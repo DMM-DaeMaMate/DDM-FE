@@ -54,13 +54,13 @@ function Input({
                         onChange={onChange}
                     />
 
-                    <IconContainer>
-                        {type == "password" && (
+                    {type == "password" && (
+                        <IconContainer>
                             <IconWrapper onClick={toggleHandler}>
                                 {show ? <RiEyeFill /> : <RiEyeOffFill />}
                             </IconWrapper>
-                        )}
-                    </IconContainer>
+                        </IconContainer>
+                    )}
                 </InputWrapper>
             </Container>
         </>
@@ -136,4 +136,26 @@ const IconWrapper = styled.div`
     font-size: 20px;
     color: ${Colors.Gray500};
     user-select: none;
+`
+
+const DateInput = styled.input`
+    width: ${({ width }) => `${width}px`};
+    height: 40px;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+
+    &::placeholder {
+        color: ${Colors.Gray400};
+    }
+
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 `

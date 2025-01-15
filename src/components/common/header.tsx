@@ -14,7 +14,9 @@ function Header() {
                         <LogoContainer onClick={() => navigate("/main")}>
                             <Logo />
                         </LogoContainer>
-                        <TextButton>일정관리</TextButton>
+                        <TextButton onClick={() => navigate("/todo")}>
+                            일정관리
+                        </TextButton>
                         <TextButton>성적기록</TextButton>
                     </LeftContainer>
 
