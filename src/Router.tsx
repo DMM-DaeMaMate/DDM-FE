@@ -5,6 +5,7 @@ import Signup from "./pages/signup/signup"
 import Inform from "./pages/signup/inform"
 import Main from "./pages/main"
 import Mypage from "./pages/mypage"
+import Todo from "./pages/todo"
 
 function Router() {
     return (
@@ -16,6 +17,7 @@ function Router() {
                 <Route path="/inform" element={<Inform />} />
                 <Route path="/main" element={<Main />} />
                 <Route path="/mypage" element={<Mypage />} />
+                <Route path="/todo" element={<Todo />} />
             </Routes>
         </BrowserRouter>
     )

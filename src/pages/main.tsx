@@ -18,7 +18,7 @@ function Main() {
             >
                 <ButtonContainer>
                     <ButtonWrapper>
-                        <Button>
+                        <Button onClick={() => navigate("/todo")}>
                             <LuNotebookPen />
                         </Button>
                         일정관리
