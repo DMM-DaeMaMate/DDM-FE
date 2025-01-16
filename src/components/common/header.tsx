@@ -17,7 +17,9 @@ function Header() {
                         <TextButton onClick={() => navigate("/todo")}>
                             일정관리
                         </TextButton>
-                        <TextButton>성적기록</TextButton>
+                        <TextButton onClick={() => navigate("/grade")}>
+                            성적기록
+                        </TextButton>
                     </LeftContainer>
 
                     <RightContainer>

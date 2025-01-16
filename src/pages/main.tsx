@@ -24,7 +24,7 @@ function Main() {
                         일정관리
                     </ButtonWrapper>
                     <ButtonWrapper>
-                        <Button>
+                        <Button onClick={() => navigate("/grade")}>
                             <GrNotes />
                         </Button>
                         성적기록
