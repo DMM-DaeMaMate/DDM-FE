@@ -29,11 +29,13 @@ function Inform() {
                             <Input
                                 label="이름"
                                 placeholder="이름을 입력해주세요"
+                                width={287}
                                 id="name"
                             />
                             <Input
                                 label="학년"
                                 placeholder="학년을 입력해주세요"
+                                width={287}
                                 id="grade"
                                 type="number"
                                 max={3}
@@ -41,6 +43,7 @@ function Inform() {
                             <Input
                                 label="반"
                                 placeholder="반을 입력해주세요"
+                                width={287}
                                 id="class"
                                 type="number"
                                 max={4}
