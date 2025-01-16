@@ -6,6 +6,7 @@ import Inform from "./pages/signup/inform"
 import Main from "./pages/main"
 import Mypage from "./pages/mypage"
 import Todo from "./pages/todo"
+import Grade from "./pages/grade"
 
 function Router() {
     return (
@@ -18,6 +19,7 @@ function Router() {
                 <Route path="/main" element={<Main />} />
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/todo" element={<Todo />} />
+                <Route path="/grade" element={<Grade />} />
             </Routes>
         </BrowserRouter>
     )

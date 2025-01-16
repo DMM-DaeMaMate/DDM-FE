@@ -22,7 +22,7 @@ function Background({ title, subtitle, children }: Props) {
                 </TopContainer>
 
                 <BottomContainer>
-                    <Wrapper> {children}</Wrapper>
+                    <Wrapper>{children}</Wrapper>
                 </BottomContainer>
             </Container>
         </>
