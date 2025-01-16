@@ -11,7 +11,7 @@ interface props {
     width?: number
     id?: string
     value?: string
-    onChange?: () => void
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 function Input({
