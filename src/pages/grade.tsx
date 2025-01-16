@@ -3,17 +3,28 @@ import { Colors } from "../style/colors"
 import Background from "../components/background"
 import { IoAddOutline } from "react-icons/io5"
 import Subject from "../components/Subject"
+import Input_Subject from "../components/Input_Subject"
+import { useState } from "react"
 
 function Grade() {
+    const [addModal, setAddModal] = useState<Boolean>(false)
+
     return (
         <>
+            {addModal && (
+                <Input_Subject
+                    type="add"
+                    close={() => setAddModal(!addModal)}
+                />
+            )}
+
             <Background
                 title="성적기록"
                 subtitle="성적을 기록하고 평균을 확인하세요"
             >
                 <ItemContainer>
                     <TitleBar>과목</TitleBar>
-                    <AddSubject>
+                    <AddSubject onClick={() => setAddModal(!addModal)}>
                         <IoAddOutline />
                     </AddSubject>
                 </ItemContainer>
