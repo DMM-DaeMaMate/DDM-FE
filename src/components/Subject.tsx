@@ -19,8 +19,7 @@ export default Subject
 const Container = styled.div`
     width: 600px;
     height: 40px;
-    border-radius: 4px;
-    border: 1px solid ${Colors.Gray200};
+    border-radius: 12px;
     cursor: pointer;
     background-color: ${Colors.White};
     color: ${Colors.Black};
