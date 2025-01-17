@@ -4,10 +4,20 @@ import Background from "../components/background"
 import { IoAddOutline } from "react-icons/io5"
 import Subject from "../components/Subject"
 import Input_Subject from "../components/Input_Subject"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function Grade() {
     const [addModal, setAddModal] = useState<Boolean>(false)
+
+    useEffect(() => {
+        const escModalClose = (e: KeyboardEvent) => {
+            if (e.key == "Escape") {
+                setAddModal(false)
+            }
+        }
+        window.addEventListener("keydown", escModalClose)
+        return () => window.removeEventListener("keydown", escModalClose)
+    }, [])
 
     return (
         <>
