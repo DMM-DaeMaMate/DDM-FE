@@ -59,6 +59,7 @@ const Container = styled.div`
     align-items: end;
     gap: 5px;
     position: relative;
+    user-select: none;
 `
 
 const Button = styled.div`
