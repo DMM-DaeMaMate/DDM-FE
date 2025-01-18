@@ -4,10 +4,22 @@ import Input from "../components/common/input"
 import Button from "../components/common/button"
 import Background from "../components/background"
 import Modal from "../components/common/modal"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function Mypage() {
     const [modal, setModal] = useState<Boolean>(false)
+    const [logout, setLogout] = useState<Boolean>(false)
+
+    useEffect(() => {
+        const escModalClose = (e: KeyboardEvent) => {
+            if (e.key == "Escape") {
+                setModal(false)
+                setLogout(false)
+            }
+        }
+        window.addEventListener("keydown", escModalClose)
+        return () => window.removeEventListener("keydown", escModalClose)
+    }, [])
 
     return (
         <>
@@ -17,6 +29,15 @@ function Mypage() {
                     content={`계정 삭제 시 프로필 및 기록 내용이 삭제됩니다. \n 삭제하시겠습니까?`}
                     check={() => setModal(!modal)}
                     close={() => setModal(!modal)}
+                />
+            )}
+
+            {logout && (
+                <Modal
+                    title="로그아웃"
+                    content="로그아웃하시겠습니까?"
+                    check={() => setLogout(false)}
+                    close={() => setLogout(false)}
                 />
             )}
 
@@ -56,7 +77,9 @@ function Mypage() {
                 <WarnContainer>
                     <ButtonContainer>
                         로그아웃하여 처음 페이지로 이동합니다.
-                        <LogoutButton>로그아웃</LogoutButton>
+                        <LogoutButton onClick={() => setLogout(!logout)}>
+                            로그아웃
+                        </LogoutButton>
                     </ButtonContainer>
                     <ButtonContainer>
                         계정 삭제 시 프로필 및 기록 내용이 삭제됩니다.
