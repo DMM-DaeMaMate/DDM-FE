@@ -1,18 +1,49 @@
 import styled from "styled-components"
-import { Colors } from "../../style/colors"
-import Input from "../../components/common/input"
-import Button from "../../components/common/button"
+import { Colors } from "../style/colors"
+import Input from "../components/common/input"
+import Button from "../components/common/button"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import UserService from "../apis/user"
 
 function Signup() {
+    const [name, setName] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [grade, setGrade] = useState<string>("")
+    const [my_class, setMyClass] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
-
-    const toNext = () => {
-        navigate("/inform")
-    }
 
     const toLogin = () => {
         navigate("/login")
+    }
+
+    const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value)
+    }
+    const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value)
+    }
+    const onGradeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setGrade(e.target.value)
+    }
+    const onGroupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setMyClass(e.target.value)
+    }
+
+    const SignupSubmit = async () => {
+        setLoading(true)
+        if (name && password && grade && my_class) {
+            const result = await UserService.signup(
+                name,
+                password,
+                parseInt(grade),
+                parseInt(my_class)
+            )
+            console.log(result)
+            if (result == 200) navigate("/main")
+        }
+        setLoading(false)
     }
 
     return (
@@ -27,11 +58,13 @@ function Signup() {
                     <Form>
                         <InputContainer>
                             <Input
-                                label="아이디"
-                                placeholder="아이디를 입력해주세요"
+                                label="이름"
+                                placeholder="이름을 입력해주세요"
                                 width={287}
-                                id="id"
+                                id="name"
                                 max={16}
+                                value={name}
+                                onChange={onNameChange}
                             />
                             <Input
                                 label="비밀번호"
@@ -39,11 +72,33 @@ function Signup() {
                                 id="pw"
                                 type="password"
                                 max={16}
+                                value={password}
+                                onChange={onPasswordChange}
+                            />
+                            <Input
+                                label="학년"
+                                placeholder="학년을 입력해주세요"
+                                width={287}
+                                id="grade"
+                                type="number"
+                                max={3}
+                                value={grade}
+                                onChange={onGradeChange}
+                            />
+                            <Input
+                                label="반"
+                                placeholder="반을 입력해주세요"
+                                width={287}
+                                id="class"
+                                type="number"
+                                max={4}
+                                value={my_class}
+                                onChange={onGroupChange}
                             />
                         </InputContainer>
 
                         <ButtonContainer>
-                            <Button onClick={toNext}>다음</Button>
+                            <Button onClick={SignupSubmit}>회원가입</Button>
 
                             <TextContainer>
                                 <Text>
