@@ -3,16 +3,36 @@ import { Colors } from "../style/colors"
 import Input from "../components/common/input"
 import Button from "../components/common/button"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import UserService from "../apis/user"
 
 function Login() {
+    const [name, setName] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
+
     const navigate = useNavigate()
 
     const toSignup = () => {
         navigate("/signup")
     }
 
-    const toMain = () => {
-        navigate("/main")
+    const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value)
+    }
+
+    const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value)
+    }
+
+    const LoginSubmit = async () => {
+        setLoading(true)
+        if (name && password) {
+            const result = await UserService.login(name, password)
+            console.log(result)
+            if (result == 200) navigate("/main")
+        }
+        setLoading(false)
     }
 
     return (
@@ -30,8 +50,10 @@ function Login() {
                                 label="아이디"
                                 placeholder="아이디를 입력해주세요"
                                 width={287}
-                                id="id"
+                                id="name"
                                 max={16}
+                                value={name}
+                                onChange={onNameChange}
                             />
                             <Input
                                 label="비밀번호"
@@ -39,11 +61,13 @@ function Login() {
                                 id="pw"
                                 type="password"
                                 max={16}
+                                value={password}
+                                onChange={onPasswordChange}
                             />
                         </InputContainer>
 
                         <ButtonContainer>
-                            <Button onClick={toMain}>로그인</Button>
+                            <Button onClick={LoginSubmit}>로그인</Button>
 
                             <TextContainer>
                                 <Text>
