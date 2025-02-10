@@ -1,11 +1,11 @@
-import TimeTable from "../components/timtable"
+import TimeTable from "../components/common/timtable"
 import styled from "styled-components"
 import { Colors } from "../style/colors"
 import { LuNotebookPen } from "react-icons/lu"
 import { GrNotes } from "react-icons/gr"
 import { BsPersonCircle } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
-import Background from "../components/background"
+import Background from "../components/common/background"
 
 function Main() {
     const navigate = useNavigate()

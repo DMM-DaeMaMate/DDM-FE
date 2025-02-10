@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Colors } from "../../style/colors"
-import { TextareaHTMLAttributes, useState } from "react"
+import React from "react"
 
 interface props {
     label?: string
@@ -11,7 +11,7 @@ interface props {
     height?: number
     id?: string
     value?: string
-    onChange?: () => void
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 function Input_big({

@@ -10,7 +10,7 @@ interface props {
     max?: number
     width?: number
     id?: string
-    value?: string
+    value?: string | number | undefined
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -28,6 +28,19 @@ function Input({
 
     const toggleHandler = () => {
         setShow(!show)
+    }
+
+    const formattedValue =
+        type === "date" && value && isDate(value)
+            ? value.toISOString().slice(0, 10) // 'YYYY-MM-DD' 형식
+            : value
+
+    // Date 객체인지 확인하는 함수
+    function isDate(value: unknown): value is Date {
+        return (
+            Object.prototype.toString.call(value) === "[object Date]" &&
+            !isNaN(Number(value))
+        )
     }
 
     return (
@@ -48,7 +61,7 @@ function Input({
                         max={max}
                         min={0}
                         maxLength={max}
-                        value={value}
+                        value={formattedValue}
                         name={id}
                         id={id}
                         onChange={onChange}

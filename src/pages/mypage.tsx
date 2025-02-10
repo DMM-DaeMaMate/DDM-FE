@@ -2,24 +2,47 @@ import styled from "styled-components"
 import { Colors } from "../style/colors"
 import Input from "../components/common/input"
 import Button from "../components/common/button"
-import Background from "../components/background"
+import Background from "../components/common/background"
 import Modal from "../components/common/modal"
 import { useEffect, useState } from "react"
+import Logout from "../components/user/Logout"
+import { useNavigate } from "react-router-dom"
+import UserService from "../apis/user"
 
 function Mypage() {
+    const navigater = useNavigate()
     const [modal, setModal] = useState<Boolean>(false)
-    const [logout, setLogout] = useState<Boolean>(false)
+    const [logoutModal, setLogout] = useState<Boolean>(false)
+    const [pw, setPw] = useState<Boolean>(false)
+    const [grade, setGrade] = useState<number | string>()
+    const [my_class, setMyclass] = useState<number | string>()
+
+    const getData = async () => {
+        const data = await UserService.get()
+        setGrade(data.grade)
+        setMyclass(data.my_class)
+    }
 
     useEffect(() => {
         const escModalClose = (e: KeyboardEvent) => {
             if (e.key == "Escape") {
                 setModal(false)
                 setLogout(false)
+                setPw(false)
             }
         }
+
+        getData()
         window.addEventListener("keydown", escModalClose)
         return () => window.removeEventListener("keydown", escModalClose)
     }, [])
+
+    const logoutHandler = async () => {
+        const logoutTF = await UserService.logout()
+        if (logoutTF) {
+            navigater("/")
+        }
+    }
 
     return (
         <>
@@ -27,57 +50,68 @@ function Mypage() {
                 <Modal
                     title="계정 삭제하기"
                     content={`계정 삭제 시 프로필 및 기록 내용이 삭제됩니다. \n 삭제하시겠습니까?`}
-                    check={() => setModal(!modal)}
+                    check={() => {
+                        setModal(!modal)
+                        setPw(true)
+                    }}
                     close={() => setModal(!modal)}
                 />
             )}
 
-            {logout && (
+            {logoutModal && (
                 <Modal
                     title="로그아웃"
                     content="로그아웃하시겠습니까?"
-                    check={() => setLogout(false)}
-                    close={() => setLogout(false)}
+                    check={() => {
+                        setLogout(false)
+                        navigater("/")
+                    }}
+                    close={logoutHandler}
                 />
             )}
+            {pw && <Logout close={() => setPw(false)} setModal={setPw} />}
 
             <Background
                 title="마이페이지"
                 subtitle="이 곳에서 자신의 정보를 수정하세요"
             >
-                <Form>
-                    <Input
-                        label="이름"
-                        placeholder="이름을 수정해주세요"
-                        id="name"
-                        width={450}
-                    />
-                    <Input
-                        label="학년"
-                        placeholder="학년을 수정해주세요"
-                        id="grade"
-                        type="number"
-                        width={450}
-                        max={3}
-                    />
-                    <Input
-                        label="반"
-                        placeholder="반을 수정해주세요"
-                        id="class"
-                        type="number "
-                        width={450}
-                        max={4}
-                    />
-                    <ButtonWrapper>
-                        <Cancel>되돌리기</Cancel>
-                        <Button width={125}>수정하기</Button>
-                    </ButtonWrapper>
-                </Form>
+                <>
+                    <Form>
+                        <Input
+                            label="학년"
+                            placeholder="학년을 수정해주세요"
+                            id="grade"
+                            type="number"
+                            width={450}
+                            max={3}
+                            value={grade}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => setGrade(e.target.value)}
+                        />
+                        <Input
+                            label="반"
+                            placeholder="반을 수정해주세요"
+                            id="class"
+                            type="number "
+                            width={450}
+                            max={4}
+                            value={my_class}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => setMyclass(e.target.value)}
+                        />
+                        <ButtonWrapper>
+                            <Cancel>되돌리기</Cancel>
+                            <Button width={125}>수정하기</Button>
+                        </ButtonWrapper>
+                    </Form>
+                </>
 
                 <WarnContainer>
                     <ButtonContainer>
                         로그아웃하여 처음 페이지로 이동합니다.
-                        <LogoutButton onClick={() => setLogout(!logout)}>
+                        <LogoutButton onClick={() => setLogout(!logoutModal)}>
                             로그아웃
                         </LogoutButton>
                     </ButtonContainer>

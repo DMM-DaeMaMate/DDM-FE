@@ -1,15 +1,17 @@
 import styled from "styled-components"
 import { Colors } from "../../style/colors"
 import { IoClose } from "react-icons/io5"
+import { ReactNode } from "react"
 
 interface Props {
     title?: string
     content?: string
     check?: () => void
     close?: () => void
+    children?: ReactNode
 }
 
-function Modal({ title, content, check, close }: Props) {
+function Modal({ title, content, check, close, children }: Props) {
     return (
         <>
             <Background>
@@ -22,7 +24,10 @@ function Modal({ title, content, check, close }: Props) {
                     </TopContainer>
 
                     <BottomContainer>
-                        <Content>{content}</Content>
+                        <Content>
+                            {content}
+                            {children}
+                        </Content>
                     </BottomContainer>
 
                     <ButtonContainer>
