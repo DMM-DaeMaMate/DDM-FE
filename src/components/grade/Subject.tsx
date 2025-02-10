@@ -1,15 +1,18 @@
 import styled from "styled-components"
-import { Colors } from "../style/colors"
+import { Colors } from "../../style/colors"
 
 interface Props {
     title?: string
+    key?: number
     onClick?: () => void
 }
 
-function Subject({ title, onClick }: Props) {
+function Subject({ key, title, onClick }: Props) {
     return (
         <>
-            <Container onClick={onClick}>{title}</Container>
+            <Container key={key} onClick={onClick}>
+                {title}
+            </Container>
         </>
     )
 }

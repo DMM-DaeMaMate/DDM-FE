@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import styled from "styled-components"
-import { Colors } from "../style/colors"
-import Header from "./common/header"
+import { Colors } from "../../style/colors"
+import Header from "./header"
 
 interface Props {
     title?: string

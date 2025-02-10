@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import { Colors } from "../style/colors"
-import Pill_button from "./common/pill_button"
+import { Colors } from "../../style/colors"
+import Pill_button from "../common/pill_button"
 
 interface props {
     title?: string
     content?: string
-    date?: Date
+    date?: string | Date
     onChange?: () => void
 }
 

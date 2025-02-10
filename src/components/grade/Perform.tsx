@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import Input from "./common/input"
-import { Colors } from "../style/colors"
+import Input from "../common/input"
+import { Colors } from "../../style/colors"
 import { IoAddOutline } from "react-icons/io5"
 import { FiMinus } from "react-icons/fi"
 
@@ -8,7 +8,7 @@ interface Props {
     id?: number
     name?: string
     add: boolean
-    grade?: string
+    grade?: number
     onClick?: () => void
     onTitleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     onGradeChange?: (e: React.ChangeEvent<HTMLInputElement>) => void

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { getTimeTable } from "../apis/get/getTimeTable"
-import { getWeekNumber } from "../utils/getWeekNumber"
-import { getEndDate } from "../utils/getEndDate"
-import { Colors } from "../style/colors"
+import { getTimeTable } from "../../apis/get/getTimeTable"
+import { getWeekNumber } from "../../utils/getWeekNumber"
+import { getEndDate } from "../../utils/getEndDate"
+import { Colors } from "../../style/colors"
 
 export const TimeTable = () => {
     const days = ["월", "화", "수", "목", "금"]
@@ -47,7 +47,7 @@ export const TimeTable = () => {
                 }
 
                 try {
-                    const res = await getTimeTable(currentDay.toString(), 1, 2)
+                    const res = await getTimeTable(currentDay.toString())
                     const arr = res?.data.hisTimetable?.[1]?.row || []
                     for (let j = 0; j < 7; j++) {
                         table[j + 1] = arr[j] ? arr[j].ITRT_CNTNT : "-"
