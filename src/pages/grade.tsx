@@ -1,20 +1,29 @@
 import styled from "styled-components"
 import { Colors } from "../style/colors"
-import Background from "../components/background"
+import Background from "../components/common/background"
 import { IoAddOutline } from "react-icons/io5"
-import Subject from "../components/Subject"
-import Input_Subject from "../components/Input_Subject"
+import Subject from "../components/grade/Subject"
+import Input_Subject from "../components/grade/Input_Subject"
 import { useState, useEffect } from "react"
+import ResultsService from "../apis/results"
+import { Results } from "../apis/results/type"
 
 function Grade() {
     const [addModal, setAddModal] = useState<Boolean>(false)
+    const [selectedSubject, setSelectedSubject] = useState<Results | null>(null)
+    const [data, setData] = useState<Results[]>([])
 
     useEffect(() => {
+        const getData = async () => {
+            const results = await ResultsService.read()
+            setData(results)
+        }
         const escModalClose = (e: KeyboardEvent) => {
             if (e.key == "Escape") {
                 setAddModal(false)
             }
         }
+        getData()
         window.addEventListener("keydown", escModalClose)
         return () => window.removeEventListener("keydown", escModalClose)
     }, [])
@@ -23,8 +32,9 @@ function Grade() {
         <>
             {addModal && (
                 <Input_Subject
-                    type="add"
-                    close={() => setAddModal(!addModal)}
+                    type={selectedSubject ? "edit" : " add"}
+                    setModal={setAddModal}
+                    subjectData={selectedSubject}
                 />
             )}
 
@@ -34,16 +44,28 @@ function Grade() {
             >
                 <ItemContainer>
                     <TitleBar>과목</TitleBar>
-                    <AddSubject onClick={() => setAddModal(!addModal)}>
+                    <AddSubject
+                        onClick={() => {
+                            setAddModal(true)
+                            setSelectedSubject(null)
+                        }}
+                    >
                         <IoAddOutline />
                     </AddSubject>
                 </ItemContainer>
 
                 <ItemContainer>
-                    <Subject title="국어" />
-                    <Subject title="수학" />
-                    <Subject title="사회" />
-                    <Subject title="과학" />
+                    {data &&
+                        data.map((v) => (
+                            <Subject
+                                key={v.id}
+                                title={v.subject}
+                                onClick={() => {
+                                    setSelectedSubject(v)
+                                    setAddModal(true)
+                                }}
+                            />
+                        ))}
                 </ItemContainer>
             </Background>
         </>
